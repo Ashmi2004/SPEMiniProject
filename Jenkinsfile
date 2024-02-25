@@ -26,7 +26,7 @@ pipeline {
 	    steps {
 		sh '''
 	 	cd app
-                python testing/test.py
+                python test.py
 		'''
 		}
 	}
