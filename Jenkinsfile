@@ -16,9 +16,10 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh '''
-                docker build -t calculator .
-		'''                
+               script {
+                    // Build Docker image
+                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                }                
             }
         }
         stage('Push Docker Images') {
