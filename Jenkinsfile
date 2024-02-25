@@ -22,6 +22,12 @@ pipeline {
                 }                
             }
         }
+	stage('Testing') {
+	    steps {
+	 	cd testing
+                python test.py
+		}
+	}
         stage('Push Docker Images') {
             steps {
                 script{

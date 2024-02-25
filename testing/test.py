@@ -22,7 +22,7 @@ class CalcTest(unittest.TestCase):
         equals = driver.find_element(By.XPATH,"/html/body/div/form/div[2]/div[4]/input[4]")
         equals.send_keys(Keys.ENTER)
         #inputscreen.get_attribute("value")
-        self.assertEqual(inputscreen.get_attribute("value"), "3")
+        self.assertEqual(inputscreen.get_attribute("value"), "4")
 
 
     def tearDown(self):
