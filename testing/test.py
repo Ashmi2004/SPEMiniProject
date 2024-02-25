@@ -15,7 +15,7 @@ class CalcTest(unittest.TestCase):
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
         cservice=webdriver.ChromeService(executable_path='/usr/local/bin/chromedriver')
-        self.driver = webdriver.Chrome(chrome_options=options, service = cservice)
+        self.driver = webdriver.Chrome(options=options, service = cservice)
 
  
     def test_search_in_python_org(self): 
