@@ -9,8 +9,13 @@ from selenium import webdriver
 class CalcTest(unittest.TestCase):
  
     def setUp(self):
+        options = webdriver.ChromeOptions()
+        options.add_argument("--disable-extensions")
+        options.add_argument("--headless")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--no-sandbox")
         cservice=webdriver.ChromeService(executable_path='/usr/local/bin/chromedriver')
-        self.driver = webdriver.Chrome(service = cservice)
+        self.driver = webdriver.Chrome(chrome_options=options, service = cservice)
 
  
     def test_search_in_python_org(self): 
