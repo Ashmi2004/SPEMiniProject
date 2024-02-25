@@ -25,7 +25,7 @@ pipeline {
 	stage('Test') {
 	    steps {
 		sh '''
-	 	cd /app
+	 	cd app
                 python testing/test.py
 		'''
 		}
