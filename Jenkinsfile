@@ -22,10 +22,12 @@ pipeline {
                 }                
             }
         }
-	stage('Testing') {
+	stage('Test') {
 	    steps {
-	 	cd testing
-                python test.py
+		sh '''
+	 	cd /app
+                python testing/test.py
+		'''
 		}
 	}
         stage('Push Docker Images') {
