@@ -24,10 +24,7 @@ pipeline {
         }
 	stage('Test') {
 	    steps {
-		sh '''
-	 	cd app
-                python test.py
-		'''
+		sh 'python test.py'
 		}
 	}
         stage('Push Docker Images') {
