@@ -8,7 +8,7 @@
   tasks:
     - name: Pull Docker Image
       docker_image:
-        name: "ashmi/calculator"
+        name: "asmita963/calculator"
         source: pull
       register: docker_pull_result
 
@@ -24,4 +24,4 @@
       shell: docker rm -f calculator
 
     - name: Running container
-      shell: docker run -it -d --name calculator ashmi/calculator
+      shell: docker run -it -d --name calculator asmita963/calculator
