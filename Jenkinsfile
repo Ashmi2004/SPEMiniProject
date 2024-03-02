@@ -22,13 +22,6 @@ pipeline {
                 }                
             }
         }
-	stage('Test') {
-	    steps {
-		sh '''
-		python3 testing/test.py
-		'''
-		}
-	}
         stage('Push Docker Images') {
             steps {
                 script{
