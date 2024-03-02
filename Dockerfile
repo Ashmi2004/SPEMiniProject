@@ -18,8 +18,9 @@ FROM nginx:alpine
 #RUN pip install selenium
 
 
-COPY calculator.html /app/calculator.html
+COPY index.html /app/index.html
 COPY style.css /app/style.css
 COPY testing/test.py /app/test.py
-COPY . /usr/share/nginx/html
+COPY index.html /usr/share/nginx/html/index.html
+COPY style.css /usr/share/nginx/html/style.css
 #CMD [ "python", "./test.py" ]
