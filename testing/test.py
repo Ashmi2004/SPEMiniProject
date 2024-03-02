@@ -15,7 +15,7 @@ class CalcTest(unittest.TestCase):
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
         cservice=webdriver.ChromeService(executable_path='/usr/local/bin/chromedriver')
-        self.driver = webdriver.Chrome(options=options, service = cservice)
+        self.driver = webdriver.Chrome(service = cservice)
 
  
     def test_search_in_python_org(self): 
@@ -24,6 +24,7 @@ class CalcTest(unittest.TestCase):
         time.sleep(2)
         inputscreen = driver.find_element(By.XPATH,"/html/body/div/form/div[1]/input")
         inputscreen.send_keys("2+2")
+        time.sleep(7)
         equals = driver.find_element(By.XPATH,"/html/body/div/form/div[2]/div[4]/input[4]")
         equals.send_keys(Keys.ENTER)
         #inputscreen.get_attribute("value")
