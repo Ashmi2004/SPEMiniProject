@@ -25,17 +25,24 @@ pipeline {
         }
 	stage('Run') {
             steps {
-                sh 'docker run -d -p 8090:80 --name calculator'
+                sh '''
+		docker run -d -p 8090:80 --name DOCKER_IMAGE_NAME
+		'''
             }
         }
 	stage('Test') {
 	   steps {
-		sh 'cd testing'
+		sh '''
+		cd testing
+		'''
 	       script {
 			// Run Selenium test cases
 			docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
 		}
-		sh 'docker run  selenium-webdriver'		
+		
+		sh '''
+		docker run  selenium-webdriver
+		'''	
 	   }
 	}
         stage('Push Docker Images') {
