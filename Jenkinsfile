@@ -32,7 +32,7 @@ pipeline {
         }
 	stage('Test') {
 	   steps {
-		   dir(testing)
+		   sh 'cd testing'
 	       script {
 			// Run Selenium test cases
 		       //dir(testing)
