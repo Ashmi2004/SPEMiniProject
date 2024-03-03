@@ -32,16 +32,16 @@ pipeline {
         }
 	stage('Test') {
 	   steps {
-		// sh 'cd testing'
-			// Run Selenium test cases
+		script{
 		       dir('testing')
 		       {
-		       //def output = sh(returnStdout: true, script: 'pwd')
-                    	//echo "Output: ${output}"
-		       test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
-		       test_container = test_image.run("-d")
+		      	 //def output = sh(returnStdout: true, script: 'pwd')
+			//echo "Output: ${output}"
+			       sh 'pwd'
+			       test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
+			       test_container = test_image.run("-d")
 		       }
-		
+		}
 	   }
 	}
         stage('Push Docker Images') {
