@@ -39,7 +39,7 @@ pipeline {
 			//echo "Output: ${output}"
 			       sh 'pwd'
 			       test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
-			       test_container = test_image.run()
+			       test_container = test_image.run("--rm -it")
 		       }
 		}
 	   }
