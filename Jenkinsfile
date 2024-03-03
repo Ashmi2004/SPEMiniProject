@@ -26,7 +26,6 @@ pipeline {
 	stage('Run') {
             steps {
 		script{
-                //sh (script:"docker run -d -p 8090:80 --name ${DOCKER_IMAGE_NAME}:latest")
 		image.run("-p 8090:80")
 		}
             }
@@ -38,12 +37,9 @@ pipeline {
 		'''
 	       script {
 			// Run Selenium test cases
-			docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
+			test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
+		        test_image.run()
 		}
-		
-		sh '''
-		docker run  selenium-webdriver
-		'''	
 	   }
 	}
         stage('Push Docker Images') {
