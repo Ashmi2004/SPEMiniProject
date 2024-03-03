@@ -25,10 +25,8 @@ pipeline {
         }
 	stage('Run') {
             steps {
-		
-                sh ''' docker run -d -p 8090:80 --name DOCKER_IMAGE_NAME '''
+                sh (script: "docker run -d -p 8090:80 --name ${DOCKER_IMAGE_NAME}")
 		// docker.image("${DOCKER_IMAGE_NAME}").withRun('-p 8090:80')
-		
             }
         }
 	stage('Test') {
