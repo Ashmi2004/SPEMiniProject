@@ -26,7 +26,7 @@ pipeline {
 	stage('Run') {
             steps {
 		script{
-		image.run("-p 8090:80")
+		image.run("-d -p 8090:80")
 		}
             }
         }
@@ -38,7 +38,7 @@ pipeline {
 	       script {
 			// Run Selenium test cases
 			test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
-		        test_image.run()
+		        test_image.run("-d")
 		}
 	   }
 	}
