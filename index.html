@@ -2,24 +2,27 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Scientific Calculator and Calculator</title>
+<title>Scientific Calculator</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 	<script>
+	
 	function calcNumbers(result){
 		form.displayResult.value=form.displayResult.value+result;
 		
 	}
+	function clearn()
+   	{
+   		form.displayResult.value="";
+  	 }
 	function factorial(n) {
-    //base case for 0!
-    if (n == 0 || n == 1) {
-        return 1;
-        //recursion case
-    } else {
-        return n * factorial(n - 1);
-    }
+    		if (n == 0 || n == 1) {
+        	return 1;
+    	} else {
+        	return n * factorial(n - 1);
+    	}
 	}
 	function calcFact(){
 		form.displayResult.value=factorial(form.displayResult.value)
@@ -30,8 +33,9 @@
 	function calcSqrt(){
 		form.displayResult.value=Math.sqrt(form.displayResult.value)
 	}
-	function calcPower(result){
-		form.displayResult.value=Math.pow(form.displayResult.value,result)
+	function calcPower(){
+	  let power = prompt("Please enter power variable");
+		form.displayResult.value=Math.pow(form.displayResult.value,power)
 	}
 	
 	</script>
@@ -63,17 +67,21 @@
 				</div>
 				
 				<div class="row">
+				<input type="button" name="fact" value="!" onClick="calcFact(fact.value)">
 				<input type="button" name="b0" value="0" onClick="calcNumbers(b0.value)">
 				  <input type="button" name="potb" value="." onClick="calcNumbers(potb.value)">
 				  <input type="button" name="divb" value="/" onClick="calcNumbers(divb.value)">
-				  <input type="button" class="red" value="=" onClick="displayResult.value=eval(displayResult.value)">
 				</div>
 
 				<div class="row">
-					<input type="button" name="sqrt" value="sqrt" onClick="calcSqrt(sqrt.value)">
-					  <input type="button" name="fact" value="!" onClick="calcFact(fact.value)">
+					  <input type="button" name="sqrt" value="sqrt" onClick="calcSqrt(sqrt.value)">
 					  <input type="button" name="log" value="ln" onClick="calcLog(log.value)">
 					  <input type="button" name="power" value="^" onClick="calcPower(power.value)">
+					  <input type="button" class="red" value="=" onClick="displayResult.value=eval(displayResult.value)">
+				</div>
+				<div class="row">
+				  <input type="button" name="blank" value="">
+					<input type="button" name="clear" value="C" onClick="clearn()">
 				</div>
 			</div>
 		

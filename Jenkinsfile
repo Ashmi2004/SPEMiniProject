@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE_NAME = 'calculator'
+	DOCKER_TEST_IMAGE_NAME = 'selenium-webdriver'
         GITHUB_REPO_URL = 'https://github.com/Ashmi2004/SPEMiniProject.git'
 	DOKCERHUB_CREDENTIALS = credentials('DockerHubCred')
     }
@@ -22,6 +23,21 @@ pipeline {
                 }                
             }
         }
+	stage('Run') {
+            steps {
+                sh 'docker run -d -p 8090:80 --name calculator'
+            }
+        }
+	stage('Test') {
+	   steps {
+		sh 'cd testing'
+	       script {
+			// Run Selenium test cases
+			docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
+		}
+		sh 'docker run  selenium-webdriver'		
+	   }
+	}
         stage('Push Docker Images') {
             steps {
                 script{
