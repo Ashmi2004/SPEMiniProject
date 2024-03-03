@@ -37,7 +37,9 @@ pipeline {
 		'''
 	       script {
 			// Run Selenium test cases
-			test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
+		       def output = sh(returnStdout: true, script: 'pwd')
+                    	echo "Output: ${output}"
+		       test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
 		        test_image.run("-d")
 		}
 	   }
