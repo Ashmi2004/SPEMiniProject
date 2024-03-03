@@ -26,7 +26,7 @@ pipeline {
 	stage('Run') {
             steps {
 		script{
-		image.run("-d -rm -p 8090:80")
+		container = image.run("-d -p 8090:80")
 		}
             }
         }
@@ -38,7 +38,7 @@ pipeline {
 		       def output = sh(returnStdout: true, script: 'pwd')
                     	echo "Output: ${output}"
 		       test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
-		        test_image.run("-d -rm")
+		       test_container = test_image.run("-d")
 		}
 	   }
 	}
@@ -60,6 +60,14 @@ pipeline {
                         inventory: 'inventory'
                      )
                 }
+            }
+        }
+    stage('Terminate') {
+            steps {
+		script{
+		container.stop()
+		test_container.stop()
+		}
             }
         }
     }
