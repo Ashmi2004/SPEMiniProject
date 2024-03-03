@@ -19,14 +19,16 @@ pipeline {
             steps {
                script {
                     // Build Docker image
-                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                    image = docker.build("${DOCKER_IMAGE_NAME}", '.')
                 }                
             }
         }
 	stage('Run') {
             steps {
-                sh (script: "docker run -d -p 8090:80 --name ${DOCKER_IMAGE_NAME}")
-		// docker.image("${DOCKER_IMAGE_NAME}").withRun('-p 8090:80')
+		script{
+                //sh (script:"docker run -d -p 8090:80 --name ${DOCKER_IMAGE_NAME}:latest")
+		image.run("-p 8090:80")
+		}
             }
         }
 	stage('Test') {
