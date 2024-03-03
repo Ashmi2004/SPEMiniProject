@@ -26,7 +26,7 @@ pipeline {
 	stage('Run') {
             steps {
 		script{
-		container = image.run("-d -p 8090:80")
+		container = image.run("-p 8090:80")
 		}
             }
         }
@@ -39,7 +39,7 @@ pipeline {
 			//echo "Output: ${output}"
 			       sh 'pwd'
 			       test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
-			       test_container = test_image.run("-d")
+			       test_container = test_image.run()
 		       }
 		}
 	   }
