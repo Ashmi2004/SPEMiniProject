@@ -26,21 +26,19 @@ pipeline {
 	stage('Run') {
             steps {
 		script{
-		image.run("-d -p 8090:80")
+		image.run("-d -rm -p 8090:80")
 		}
             }
         }
 	stage('Test') {
 	   steps {
-		sh '''
-		cd testing
-		'''
 	       script {
 			// Run Selenium test cases
+		       dir(testing)
 		       def output = sh(returnStdout: true, script: 'pwd')
                     	echo "Output: ${output}"
 		       test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
-		        test_image.run("-d")
+		        test_image.run("-d -rm")
 		}
 	   }
 	}
