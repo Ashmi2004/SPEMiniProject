@@ -34,7 +34,7 @@ pipeline {
 	   steps {
 	       script {
 			// Run Selenium test cases
-		       dir(testing)
+		       //dir(testing)
 		       def output = sh(returnStdout: true, script: 'pwd')
                     	echo "Output: ${output}"
 		       test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
