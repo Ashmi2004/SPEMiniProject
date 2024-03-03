@@ -26,7 +26,7 @@ pipeline {
 	stage('Run') {
             steps {
 		script{
-		container = image.run("-p 8090:80")
+		container = image.run("--rm -p 8090:80")
 		}
             }
         }
@@ -39,7 +39,9 @@ pipeline {
 			//echo "Output: ${output}"
 			       sh 'pwd'
 			       test_image = docker.build("${DOCKER_TEST_IMAGE_NAME}",'.')
-			       test_container = test_image.run("--rm -it")
+			       //test_container = test_image.run("--rm -it")
+			       def status = sh(returnStatus: true, script: 'docker run --rm -it selenium-webdriver')
+			       echo "Output: ${output}"
 		       }
 		}
 	   }
@@ -62,14 +64,6 @@ pipeline {
                         inventory: 'inventory'
                      )
                 }
-            }
-        }
-    stage('Terminate') {
-            steps {
-		script{
-		container.stop()
-		test_container.stop()
-		}
             }
         }
     }
