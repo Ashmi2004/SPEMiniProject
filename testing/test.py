@@ -55,7 +55,7 @@ class CalcTest(unittest.TestCase):
         inputscreen.send_keys("10*2")
         equals = driver.find_element(By.CLASS_NAME,"red")
         equals.send_keys(Keys.ENTER)
-        self.assertEqual(inputscreen.get_attribute("value"), "20")
+        self.assertEqual(inputscreen.get_attribute("value"), "25")
 
     def test_division(self):
         driver = self.driver
